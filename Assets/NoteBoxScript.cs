@@ -32,4 +32,10 @@ public class NoteBoxScript : MonoBehaviour {
 			gameObject.GetComponent<Renderer>().enabled = true;
 		}
 	}
+
+	void OnDestroy()
+	{
+		MidiMaster.noteOnDelegate -= NoteOn;
+		MidiMaster.noteOffDelegate -= NoteOff;
+	}
 }

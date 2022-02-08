@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameScript : MonoBehaviour {
+public class CreateDeviceBank : MonoBehaviour {
 
 	public GameObject noteBoxPrefab;
+	public uint deviceId;
 
 	// Use this for initialization
 	void Start () {
@@ -12,8 +13,9 @@ public class GameScript : MonoBehaviour {
 		for(int i=48;i<73;i++) {
 			xPos += 0.25f;
 			GameObject newNoteBox = Instantiate(noteBoxPrefab);
-			newNoteBox.GetComponent<NoteBoxScript>().noteId = i;
-			newNoteBox.transform.position = new Vector2(xPos, 0);
+			newNoteBox.GetComponent<DeviceNoteBoxScript>().noteId = i;
+			newNoteBox.GetComponent<DeviceNoteBoxScript>().deviceId = deviceId;
+			newNoteBox.transform.position = new Vector2(xPos, transform.position.y);
 		}
 
 	}

@@ -23,7 +23,7 @@ public class NoteBoxScript : MonoBehaviour {
 	{
 		if (noteId == note) {
 			gameObject.GetComponent<Renderer>().enabled = false;
-			Debug.Log(source);
+			Debug.Log("deviceId: " + source);
 		}
 	}
 
@@ -31,7 +31,7 @@ public class NoteBoxScript : MonoBehaviour {
 	{
 		if (noteId == note) {
 			gameObject.GetComponent<Renderer>().enabled = true;
-			Debug.Log(source);
+			Debug.Log("deviceId: " + source);
 		}
 	}
 

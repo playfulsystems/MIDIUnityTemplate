@@ -19,17 +19,19 @@ public class NoteBoxScript : MonoBehaviour {
 	
 	}
 
-	void NoteOn(MidiChannel channel, int note, float velocity)
+	void NoteOn(uint source, MidiChannel channel, int note, float velocity)
 	{
 		if (noteId == note) {
 			gameObject.GetComponent<Renderer>().enabled = false;
+			Debug.Log(source);
 		}
 	}
 
-	void NoteOff(MidiChannel channel, int note)
+	void NoteOff(uint source, MidiChannel channel, int note)
 	{
 		if (noteId == note) {
 			gameObject.GetComponent<Renderer>().enabled = true;
+			Debug.Log(source);
 		}
 	}
 

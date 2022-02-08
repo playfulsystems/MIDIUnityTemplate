@@ -103,8 +103,8 @@ namespace MidiJack
 
         #region Event Delegates
 
-        public delegate void NoteOnDelegate(MidiChannel channel, int note, float velocity);
-        public delegate void NoteOffDelegate(MidiChannel channel, int note);
+        public delegate void NoteOnDelegate(uint source, MidiChannel channel, int note, float velocity);
+        public delegate void NoteOffDelegate(uint source, MidiChannel channel, int note);
         public delegate void KnobDelegate(MidiChannel channel, int knobNumber, float knobValue);
 
         public NoteOnDelegate noteOnDelegate { get; set; }
@@ -223,7 +223,8 @@ namespace MidiJack
                     _channelArray[channelNumber]._noteArray[message.data1] = velocity;
                     _channelArray[(int)MidiChannel.All]._noteArray[message.data1] = velocity;
                     if (noteOnDelegate != null)
-                        noteOnDelegate((MidiChannel)channelNumber, message.data1, velocity - 1);
+                        //noteOnDelegate((MidiChannel)channelNumber, message.data1, velocity - 1);
+                        noteOnDelegate(message.source, (MidiChannel)channelNumber, message.data1, velocity - 1);
                 }
 
                 // Note off message?
@@ -232,7 +233,8 @@ namespace MidiJack
                     _channelArray[channelNumber]._noteArray[message.data1] = -1;
                     _channelArray[(int)MidiChannel.All]._noteArray[message.data1] = -1;
                     if (noteOffDelegate != null)
-                        noteOffDelegate((MidiChannel)channelNumber, message.data1);
+                        //noteOffDelegate((MidiChannel)channelNumber, message.data1);
+                        noteOffDelegate(message.source, (MidiChannel)channelNumber, message.data1);
                 }
 
                 // CC message?
